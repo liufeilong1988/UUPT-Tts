@@ -1,0 +1,23 @@
+pluginManagement {
+    repositories {
+        google()
+        mavenCentral()
+        gradlePluginPortal()
+    }
+}
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+rootProject.name = "ExamplePdTts"
+include ':app'
+
+def pluginFile = "../"
+include ':PaddleLibs'
+project(":PaddleLibs").projectDir = new File(pluginFile, "PaddleLibs")
+
+include ':PaddleSpeech'
+project(":PaddleSpeech").projectDir = new File(pluginFile, "PaddleSpeech")

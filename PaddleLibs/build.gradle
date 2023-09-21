@@ -1,0 +1,37 @@
+plugins {
+    id 'com.android.library'
+}
+
+android {
+    namespace 'com.uupt.paddle'
+    compileSdk rootProject.ext.compileSdkVersion
+
+    defaultConfig {
+        minSdk  rootProject.ext.minSdkVersion
+        targetSdk  rootProject.ext.targetSdkVersion
+        versionName "1.0.0.5"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+        //编译代码的版本号
+        buildConfigField("String", "UU_GIT_REVISION", "\"${gradle.ext.uuGitVersion(file("."))}\"")
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    api fileTree(include: ['*.jar'], dir: 'libs')
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+}
